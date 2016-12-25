@@ -10,18 +10,25 @@ This way I can pull the 'leading edge' down into master and create a new branch 
 
 ## List of current dependency versions
 
+### Revel modules
 revel   (github.com/revel/revel)    v0.13.1
 cmd     (github.com/revel/cmd)      v0.13.1
 config  (github.com/revel/config)   v0.13.0
 modules (github.com/revel/modules)  v0.13.0
 
+### Revel dependencies
 gocolorize (github.com/agtorre/gocolorize) v1.0.0
 
 compress (github.com/klauspost/compress) v1.2.0
 cpuid    (github.com/klauspost/cpuid)    v1.0.0
 crc32    (github.com/klauspost/crc32)    v1.1.0
 
-pathtree (github.com/robfig/pathtree)    v1.0.0 
+pathtree (github.com/robfig/pathtree)    v1.0.0
+
+### Database
+go-sqlite3 (github.com/mattn/go-sqlite3) v1.2.0
+gorp     (github.com/go-gorp/gorp)       v2.0.0 (TODO: Probably don't use this)
+
 
 # Welcome to Revel
 
