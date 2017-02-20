@@ -4,3 +4,4 @@
 3. List all books
 4. Delete book from bookshelf
 5. Create a 'backend page' that displays the database table in a clear way
+6. Figure out database backup solution
