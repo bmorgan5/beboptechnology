@@ -3,3 +3,4 @@
 2. Save books into database
 3. List all books
 4. Delete book from bookshelf
+5. Create a 'backend page' that displays the database table in a clear way
