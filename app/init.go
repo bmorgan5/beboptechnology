@@ -47,7 +47,7 @@ func InitBookDB() {
 	revel.INFO.Printf("Attempting to InitBookDB")
 	var dbLoc = "db/books.db"
 	var err error
-	models.BooksDB, err = sql.Open("sqlite3", dbLoc)
+	models.BooksDB, err = sql.Open("sqlite3", dbLoc+"?_txlock=immediate")
 	if err != nil {
 		revel.ERROR.Printf("Failed to open sqlite3 database: %s", err)
 	} else {
