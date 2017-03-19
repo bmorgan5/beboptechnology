@@ -18,13 +18,21 @@
   </div>
 </div>
 
-<form action="{{url "BookController.HandleBookUpload"}}" id="bookupload" method="POST">
-  <p class="field">
-    <label>Book Title:</label>
-	<input type="text" name="title"/>
-  </p>
+<form method="POST" action="{{url "BookShelf.HandleUpload"}}" id="bookupload">
+  {{with $field := field "book.Title" .}}
   <p>
-	<input type="submit" value="save" />
+    <label>Title:</label>
+    <input type="text" name="{{$field.Name}}"/>
+  </p>
+  {{end}}
+  {{with $field := field "book.Author" .}}
+  <p>
+    <label>Author:</label>
+    <input type="text" name="{{$field.Name}}"/>
+  </p>
+  {{end}}
+  <p>
+    <input type="submit" value="save" />
   </p>
 </form>
 

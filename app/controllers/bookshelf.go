@@ -1,20 +1,42 @@
 package controllers
 
 import (
+	"database/sql"
+
 	m "github.com/bmorgan5/beboptechnology/app/models"
+	"github.com/bmorgan5/beboptechnology/app/routes"
 	"github.com/revel/revel"
 )
 
-type BookController struct {
+// BookShelf is the generic controller for dealing with the bookshelf
+type BookShelf struct {
 	*revel.Controller
 }
 
-func (c BookController) HandleBookUpload(title string) revel.Result {
-	revel.INFO.Printf("Uploading Book titled: %s", title)
-	return c.RenderText(title)
+// HandleUpload receives the book upload and saves it to the books database
+// TODO: Validate book input
+func (b BookShelf) HandleUpload(book m.Book) revel.Result {
+	revel.INFO.Printf("Uploading Book titled: %s | %s", book.Title, book.Author)
+	var err = Transact(m.BooksDB, func(tx *sql.Tx) error {
+		var upload, err = tx.Prepare(`INSERT INTO books (title, author) VALUES (?, ?)`)
+		if err != nil {
+			revel.ERROR.Printf("Failed to create tx.Stmt: %s", err)
+		} else {
+			_, err = upload.Exec(book.Title, book.Author)
+			if err != nil {
+				revel.ERROR.Printf("Failed to execute tx.Stmt: %s", err)
+			}
+		}
+		return err
+	})
+	if err != nil {
+		revel.ERROR.Printf("Failed to HandleUpload: %s", err)
+	}
+	return b.Redirect(routes.App.Index())
 }
 
 // GetBooks returns all books in the books database
+// TODO: Update this to use a transaction
 func GetBooks() []*m.Book {
 	var books []*m.Book
 
@@ -27,9 +49,9 @@ func GetBooks() []*m.Book {
 			if err := rows.Scan(&book.Title, &book.Author); err != nil {
 				revel.ERROR.Printf("Failed to scan row: %s", err)
 			} else {
-				revel.INFO.Printf("%s | %s", book.Title, book.Author)
+				revel.TRACE.Printf("%s | %s", book.Title, book.Author)
+				books = append(books, &book)
 			}
-			books = append(books, &book)
 		}
 	}
 	return books
