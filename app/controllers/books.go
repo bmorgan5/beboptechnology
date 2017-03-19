@@ -1,36 +1,36 @@
 package controllers
 
-import(
+import (
+	m "github.com/bmorgan5/beboptechnology/app/models"
 	"github.com/revel/revel"
-	"database/sql"
-	_ "github.com/mattn/go-sqlite3"
 )
 
 type BookController struct {
 	*revel.Controller
 }
 
-type Book struct {
-	Title string
-}
-
-func InitBookDB() {
-	revel.INFO.Printf("Attempting to InitBookDB")
-	var dbLoc = "db/books.db"
-	sqliteDB, err := sql.Open("sqlite3", dbLoc)
-	if err != nil {
-		revel.ERROR.Printf("Failed to open sqlite3 database: %s", err)
-	}
-	/*} else {
-		if perr := sqliteDB.Ping(); perr != nil {
-			revel.ERROR.Printf("Failed to ping db: %s", perr)
-		}
-	}
-	*/
-	defer sqliteDB.Close()
-}
-
 func (c BookController) HandleBookUpload(title string) revel.Result {
 	revel.INFO.Printf("Uploading Book titled: %s", title)
 	return c.RenderText(title)
+}
+
+// GetBooks returns all books in the books database
+func GetBooks() []*m.Book {
+	var books []*m.Book
+
+	if rows, err := m.BooksDB.Query("SELECT title, author FROM books"); err != nil {
+		revel.ERROR.Printf("Failed to run query: %s", err)
+	} else {
+		defer rows.Close()
+		for rows.Next() {
+			var book m.Book
+			if err := rows.Scan(&book.Title, &book.Author); err != nil {
+				revel.ERROR.Printf("Failed to scan row: %s", err)
+			} else {
+				revel.INFO.Printf("%s | %s", book.Title, book.Author)
+			}
+			books = append(books, &book)
+		}
+	}
+	return books
 }

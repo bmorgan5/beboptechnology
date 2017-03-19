@@ -1,6 +1,11 @@
 package app
 
-import "github.com/revel/revel"
+import (
+	"database/sql"
+
+	"github.com/bmorgan5/beboptechnology/app/models"
+	"github.com/revel/revel"
+)
 
 func init() {
 	// Filters is the default set of global filters.
@@ -21,7 +26,7 @@ func init() {
 
 	// register startup functions with OnAppStart
 	// ( order dependent )
-	// revel.OnAppStart(InitDB)
+	revel.OnAppStart(InitBookDB)
 	// revel.OnAppStart(FillCache)
 }
 
@@ -35,4 +40,35 @@ var HeaderFilter = func(c *revel.Controller, fc []revel.Filter) {
 	c.Response.Out.Header().Add("X-Content-Type-Options", "nosniff")
 
 	fc[0](c, fc[1:]) // Execute the next filter stage.
+}
+
+// InitBookDB initializes the BooksDB handle
+func InitBookDB() {
+	revel.INFO.Printf("Attempting to InitBookDB")
+	var dbLoc = "db/books.db"
+	var err error
+	models.BooksDB, err = sql.Open("sqlite3", dbLoc)
+	if err != nil {
+		revel.ERROR.Printf("Failed to open sqlite3 database: %s", err)
+	} else {
+		if perr := models.BooksDB.Ping(); perr != nil {
+			revel.ERROR.Printf("Failed to ping db: %s", perr)
+		} else {
+			if rows, err := models.BooksDB.Query("SELECT title, author FROM books"); err != nil {
+				revel.ERROR.Printf("Failed to run query: %s", err)
+			} else {
+				defer rows.Close()
+				for rows.Next() {
+					var title, author string
+					if err := rows.Scan(&title, &author); err != nil {
+						revel.ERROR.Printf("Failed to scan row: %s", err)
+					} else {
+						revel.INFO.Printf("%s | %s", title, author)
+					}
+				}
+			}
+		}
+	}
+
+	//defer sqliteDB.Close()
 }

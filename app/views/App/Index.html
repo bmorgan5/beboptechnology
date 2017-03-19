@@ -28,4 +28,29 @@
   </p>
 </form>
 
+{{if .books}}
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Publication Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{range .books}}
+    <tr>
+      <td>{{.Title}}</td>
+      <td>{{.Author}}</td>
+      <td>{{.PublicationDate}}</td>
+    </tr>
+    {{end}}
+  </tbody>
+</table>
+{{else}}
+<p>
+  No books found
+</p>
+{{end}}
+
 {{template "footer.html" .}}
