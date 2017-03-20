@@ -16,21 +16,29 @@ type BookShelf struct {
 // HandleUpload receives the book upload and saves it to the books database
 // TODO: Validate book input
 func (b BookShelf) HandleUpload(book m.Book) revel.Result {
-	revel.INFO.Printf("Uploading Book titled: %s | %s", book.Title, book.Author)
-	var err = Transact(m.BooksDB, func(tx *sql.Tx) error {
-		var upload, err = tx.Prepare(`INSERT INTO books (title, author) VALUES (?, ?)`)
-		if err != nil {
-			revel.ERROR.Printf("Failed to create tx.Stmt: %s", err)
-		} else {
-			_, err = upload.Exec(book.Title, book.Author)
+	revel.INFO.Printf("Attempting to uploading Book titled: %s | %s", book.Title, book.Author)
+	book.Validate(b.Validation)
+	if !b.Validation.HasErrors() {
+		var err = Transact(m.BooksDB, func(tx *sql.Tx) error {
+			var upload, err = tx.Prepare(`INSERT INTO books (title, author) VALUES (?, ?)`)
 			if err != nil {
-				revel.ERROR.Printf("Failed to execute tx.Stmt: %s", err)
+				revel.ERROR.Printf("Failed to create tx.Stmt: %s", err)
+			} else {
+				_, err = upload.Exec(book.Title, book.Author)
+				if err != nil {
+					revel.ERROR.Printf("Failed to execute tx.Stmt: %s", err)
+				}
 			}
+			return err
+		})
+		if err != nil {
+			revel.ERROR.Printf("Failed to HandleUpload: %s", err)
 		}
-		return err
-	})
-	if err != nil {
-		revel.ERROR.Printf("Failed to HandleUpload: %s", err)
+	} else {
+		for k, m := range b.Validation.ErrorMap() {
+			revel.WARN.Printf("Validation error: %s -> %s", k, m)
+		}
+		b.Validation.Keep()
 	}
 	return b.Redirect(routes.App.Index())
 }

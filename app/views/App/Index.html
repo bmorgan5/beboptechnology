@@ -10,25 +10,29 @@
   </div>
 </header>
 
-<div class="container">
+<!--This is a banner that checks the flash cookie and displays success or fail-->
+<!--<div class="container">
   <div class="row">
     <div class="span6">
       {{template "flash.html" .}}
     </div>
   </div>
 </div>
+-->
 
 <form method="POST" action="{{url "BookShelf.HandleUpload"}}" id="bookupload">
   {{with $field := field "book.Title" .}}
   <p>
     <label>Title:</label>
     <input type="text" name="{{$field.Name}}"/>
+    <span class="error">{{$field.Error}}</span>
   </p>
   {{end}}
   {{with $field := field "book.Author" .}}
   <p>
     <label>Author:</label>
     <input type="text" name="{{$field.Name}}"/>
+    <span class="error">{{$field.Error}}</span>
   </p>
   {{end}}
   <p>

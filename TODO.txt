@@ -2,8 +2,13 @@
 DONE Create text box to enter books
 DONE Save books into database
 DONE List all books - Done (trivially)
+DONE Add validation to inserted books
      Delete book from bookshelf
      Create a 'backend page' that displays the database table in a clear way
      Figure out database backup solution
      Learn how to handle nulls in DB query
      Create nice transaction functions
+     Design Bookshelf layout and create pretty CSS
+     Move database to generic database for whole site
+        Should I have a sitewide DB or a DB per unique sections that shouldn't overlap
+
