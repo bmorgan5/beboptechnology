@@ -5,14 +5,14 @@
 module:testrunner
 
 GET     /                                       App.Index
+GET     /bookshelf                              BookShelf.Index
+POST	/book									BookShelf.HandleUpload
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/*filepath                       Static.Serve("public")
-
-POST	/book									BookShelf.HandleUpload
 
 # Catch all
 #*       /:controller/:action                    :controller.:action

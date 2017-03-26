@@ -11,4 +11,4 @@ DONE Add validation to inserted books
      Design Bookshelf layout and create pretty CSS
      Move database to generic database for whole site
         Should I have a sitewide DB or a DB per unique sections that shouldn't overlap
-
+     Add these TODOs to my waffle board

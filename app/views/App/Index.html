@@ -1,68 +1,47 @@
-{{set . "title" "Home"}}
+{{set . "title" "Bebop"}}
 {{template "header.html" .}}
 
-<header class="jumbotron" style="background-color:#A9F16C">
-  <div class="container">
-    <div class="row">
-      <h1>{{.greeting}}</h1>
-      <p></p>
+<!--Everything should be inside this top container-->
+<div class="container">
+  <div class="banner">
+    <div id="banner-title">
+      <h1 id="bebop-tech">Bebop Technology</h1>
     </div>
-  </div>
-</header>
-
-<!--This is a banner that checks the flash cookie and displays success or fail-->
-<!--<div class="container">
-  <div class="row">
-    <div class="span6">
-      {{template "flash.html" .}}
-    </div>
+    <!--TODO: Maybe remove navbar-inverse-->
+    <nav class="navbar" id="banner-nav">
+      <div class="container-fluid no-left-padding">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavBar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!--<a class="navbar-brand" href="#">Bebop Technology</a>-->
+        </div>
+        <div class="collapse navbar-collapse no-left-padding" id="myNavBar">
+          <ul class="nav navbar-nav">
+            <!--<li class="active"><a href="#">Home</a></li>-->
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <!--TODO: Insert github icon-->
+                <!--<img src="/public/img/GitHub-Mark-32px.png" alt="Github"/>-->
+                Github<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a target="_blank" href="http://github.com/bmorgan5/ledvest">LED Vest</a></li>
+                <li><a target="_blank" href="http://github.com/bmorgan5/fun_ofdm">Fun OFDM</a></li>
+              </ul>
+            </li>
+            <li><a href="{{url "BookShelf.Index"}}">BookShelf</a></li>
+            <li><a href="#">Space Timeline</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span>Sign-Up</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </div>
 </div>
--->
-
-<form method="POST" action="{{url "BookShelf.HandleUpload"}}" id="bookupload">
-  {{with $field := field "book.Title" .}}
-  <p>
-    <label>Title:</label>
-    <input type="text" name="{{$field.Name}}"/>
-    <span class="error">{{$field.Error}}</span>
-  </p>
-  {{end}}
-  {{with $field := field "book.Author" .}}
-  <p>
-    <label>Author:</label>
-    <input type="text" name="{{$field.Name}}"/>
-    <span class="error">{{$field.Error}}</span>
-  </p>
-  {{end}}
-  <p>
-    <input type="submit" value="save" />
-  </p>
-</form>
-
-{{if .books}}
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Publication Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{range .books}}
-    <tr>
-      <td>{{.Title}}</td>
-      <td>{{.Author}}</td>
-      <td>{{.PublicationDate}}</td>
-    </tr>
-    {{end}}
-  </tbody>
-</table>
-{{else}}
-<p>
-  No books found
-</p>
-{{end}}
 
 {{template "footer.html" .}}

@@ -13,6 +13,15 @@ type BookShelf struct {
 	*revel.Controller
 }
 
+// Index renders main Index page for bookshelf app
+func (b BookShelf) Index() revel.Result {
+	var books = GetBooks()
+	for _, b := range books {
+		revel.INFO.Printf("Index: %s | %s", b.Title, b.Author)
+	}
+	return b.Render(books)
+}
+
 // HandleUpload receives the book upload and saves it to the books database
 // TODO: Validate book input
 func (b BookShelf) HandleUpload(book m.Book) revel.Result {
