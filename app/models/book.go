@@ -2,6 +2,7 @@ package models
 
 import (
 	"database/sql"
+	"time"
 
 	"github.com/revel/revel"
 )
@@ -14,10 +15,11 @@ var BooksDB *sql.DB
 type Book struct {
 	Title           string
 	Author          string
-	PublicationDate string //TODO: Make this a real date object
+	PublicationDate time.Time //TODO: Make this a real date object
+	CoverImg        []byte
 }
 
-// Validates that an inserted book has all these fields
+// Validate that an inserted book has all these fields
 func (book Book) Validate(v *revel.Validation) {
 	v.Required(book.Title).Message("A title is required")
 	v.Required(book.Author).Message("An author is required")
