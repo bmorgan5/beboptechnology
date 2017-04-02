@@ -2,8 +2,6 @@
  * Bookshelf Application */
 
 $(document).ready(function() {
-    //TODO: Load books using ajax
-    // load_books(insert_books);
     load_books();
 });
 
