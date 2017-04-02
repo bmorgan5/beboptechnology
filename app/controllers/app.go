@@ -4,6 +4,8 @@ import (
 	"github.com/revel/revel"
 )
 
+// App is the main website controller
+// TODO: Rename this to Home or something
 type App struct {
 	*revel.Controller
 }

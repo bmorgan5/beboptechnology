@@ -1,29 +1,54 @@
-/* Style s for BebopTechnology site
+/* Styles for BebopTechnology site
 sits just below the bootstrap styles */
 
-/*body {
-    font: Roboto;
-}*/
-body {
-    /*background-color: #eceeef;*/
-    background-color: whitesmoke;
-    /*background-color: rgb(236,238,239);*/
-    margin-top: 30px;
-
+html {
+    height: 100%;
 }
 
-.banner {
+body {
+    /*TODO: Pick perfect background light-grey*/
+    background-color: whitesmoke;
+    /*height: 100%;*/
+
+    /*min-height: 100%;*/
+    /*min-height: 100%;*/
+}
+/*
+.container-fluid #about-me {
+    min-height: 100%;
+}*/
+
+#content {
+    /*min-height: 100vh;*/
+    /*min-height: 100%;*/
+    /*overflow-y: auto;*/
+    /*padding-bottom: 5px;*/
+    margin-bottom: 20px;
+}
+
+#stuff {
+    min-height: 60vh;
+    /*height: 100%;*/
+}
+#moar-stuff {
+    min-height: 60vh;
+    /*margin-bottom: 10px;*/
+
+}
+/*.container {
+    min-height: 100%;
+}*/
+
+.card{
     background-color: white;
     border-width: 0px;
     border-radius: 5px;
-    /*border-top-left-radius: 5px;
-    border-top-right-radius: 5px;*/
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-bottom: 0px;
+    margin-top: 20px;
 }
 
-
 #banner-title {
+    /*min-height: 20*/
     padding-top: 20px;
     padding-bottom: 2px;
     padding-left: 15px;
@@ -32,12 +57,6 @@ body {
 #banner-nav {
     background-color: white;
     border-width: 0px;
-
-    /*border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;*/
-
 }
 
 .no-left-padding {

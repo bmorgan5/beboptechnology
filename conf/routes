@@ -6,6 +6,7 @@ module:testrunner
 
 GET     /                                       App.Index
 GET     /bookshelf                              BookShelf.Index
+GET     /bookshelf_ajax                         BookShelf.BooksJSON
 POST	/book									BookShelf.HandleUpload
 
 # Ignore favicon requests

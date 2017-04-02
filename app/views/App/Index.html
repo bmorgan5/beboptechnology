@@ -2,8 +2,8 @@
 {{template "header.html" .}}
 
 <!--Everything should be inside this top container-->
-<div class="container">
-  <div class="banner">
+<div class="container" id="content">
+  <div class="card" id="banner">
     <div id="banner-title">
       <h1 id="bebop-tech">Bebop Technology</h1>
     </div>
@@ -42,6 +42,15 @@
       </div>
     </nav>
   </div>
-</div>
+  <div class="container-fluid card" id="stuff">
+    <!--<div id=#about-me>-->
+      <p> This is some cool stuff about me </p>
+    <!--</div>-->
+  </div>
+  <div class="container-fluid card" id="moar-stuff">
+    <p> This is moar cool stuff</p>
+  </div>
+
+</div> <!-- content -->
 
 {{template "footer.html" .}}

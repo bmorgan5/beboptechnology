@@ -13,6 +13,14 @@ type BookShelf struct {
 	*revel.Controller
 }
 
+// BooksJSON returns all the books in json format
+func (b BookShelf) BooksJSON() revel.Result {
+	// TODO: How to check if this is ajax request? Does that even matter?
+	revel.INFO.Printf("Received ajax request for bookshelf")
+	var books = GetBooks()
+	return b.RenderJSON(books)
+}
+
 // Index renders main Index page for bookshelf app
 func (b BookShelf) Index() revel.Result {
 	var books = GetBooks()
@@ -49,7 +57,7 @@ func (b BookShelf) HandleUpload(book m.Book) revel.Result {
 		}
 		b.Validation.Keep()
 	}
-	return b.Redirect(routes.App.Index())
+	return b.Redirect(routes.BookShelf.Index())
 }
 
 // GetBooks returns all books in the books database
