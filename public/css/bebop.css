@@ -10,7 +10,7 @@ body {
     background-color: whitesmoke;
 }
 
-#content, #bookshelf-container {
+#content {
    margin-bottom: 20px;
 }
 
@@ -23,9 +23,6 @@ body {
     /*margin-bottom: 10px;*/
 
 }
-/*.container {
-    min-height: 100%;
-}*/
 
 .card{
     background-color: white;

@@ -1,0 +1,49 @@
+/* Styles for BebopTechnology site
+sits just below the bootstrap styles */
+
+html {
+    height: 100%;
+}
+
+body {
+    /*TODO: Pick perfect background light-grey*/
+    background-color: whitesmoke;
+}
+
+p.bold {
+    font-weight: bold;
+}
+
+#content, #bookshelf-container {
+   margin-bottom: 20px;
+}
+
+.book-card{
+    background-color: white;
+    border-width: 0px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 20px;
+}
+
+.book-card:hover .edit_button{
+    /*display: block;*/
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    visibility: visible;
+}
+
+.edit_button{
+    visibility: hidden;
+    float: right;
+    border: 5;
+    margin-left: 10px;
+}
+
+.book-padding{
+    padding: 10px;
+}
+
+.no-left-padding {
+    padding-left: 0px;
+}
