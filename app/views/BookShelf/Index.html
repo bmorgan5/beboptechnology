@@ -8,9 +8,11 @@
 <h1> Bookshelf </h1>
 <!--This is where the bookshelf.js will load the bookshelf into-->
 <!--TODO: Use ajax to upload data-->
-<div class="container" id="content">
-    <div class="card">
-    <form method="POST" action="{{url "BookShelf.HandleUpload"}}" id="bookupload" enctype="multipart/form-data">
+<div id="content" class="container-fluid">
+  <div id="bookshelf-container" class="row row-flex"></div>
+  <div class="card book-card">
+    <div class="card-block">
+      <form method="POST" action="{{url "BookShelf.HandleUpload"}}" id="bookupload" enctype="multipart/form-data">
         {{with $field := field "book.Title" .}}
         <p>
             <label>Title:</label>
@@ -34,9 +36,8 @@
         <p>
             <input type="submit" value="Upload" class="btn btn-large btn-success" />
         </p>
-    </form>
+     </form>
     </div>
-  <div class="row" id="bookshelf-container">
   </div>
 </div>
 

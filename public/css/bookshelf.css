@@ -20,8 +20,6 @@ p.bold {
 
 .book-card{
     background-color: white;
-    border-width: 0px;
-    border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-top: 20px;
 }
@@ -40,9 +38,12 @@ p.bold {
     margin-left: 10px;
 }
 
-.book-padding{
-    padding: 10px;
-}
+/*.book-cover{*/
+    /*height: 30vh;*/
+    /*max-width: 100%;*/
+    /*max-height: 100%;*/
+    /*height: auto;*/
+/*}*/
 
 .no-left-padding {
     padding-left: 0px;
