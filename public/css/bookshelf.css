@@ -14,7 +14,7 @@ p.bold {
     font-weight: bold;
 }
 
-#content, #bookshelf-container {
+#content, #bookshelf{
    margin-bottom: 20px;
 }
 
@@ -25,7 +25,6 @@ p.bold {
 }
 
 .book-card:hover .edit_button{
-    /*display: block;*/
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
     visibility: visible;
@@ -38,13 +37,46 @@ p.bold {
     margin-left: 10px;
 }
 
-/*.book-cover{*/
-    /*height: 30vh;*/
-    /*max-width: 100%;*/
-    /*max-height: 100%;*/
-    /*height: auto;*/
-/*}*/
+#background-cover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #151515; /* darkgray */
+    opacity: 0.6;
+    z-index: 888;
+}
 
-.no-left-padding {
-    padding-left: 0px;
+#page-cover {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 92vw;
+  height: 92vh;
+  z-index: 999;
+  margin-top: 0px; /* cancel out the card margin */
+  overflow: hidden;
+  overflow: scroll;
+}
+
+.book-cover-full {
+    max-height: 300px;
+    max-width: 200px;
+}
+
+.place-holder-img{
+    background-color: lightgray;
+    border: 4px solid /*gray*/ #a3a3a3;
+    border-radius: 20px;
+    min-height: 50vh;
+}
+
+.center-placeholder {
+    line-height: 45vh; /*This is a really jenky way to center this*/
+}
+
+.no-scroll{
+    overflow: hidden;
 }
