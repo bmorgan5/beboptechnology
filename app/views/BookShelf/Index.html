@@ -1,45 +1,49 @@
 {{set . "title" "Bookshelf"}}
 {{template "header.html" .}}
 
-<!--TODO: This page isn't fully independent of the bebop.css-->
+<!--TODO: Possibly minify this-->
+<script src="/public/ckeditor-4.6.2-full/ckeditor.js"></script>
+
+<!--<script src="/public/js/config.js"></script>-->
 <link rel="stylesheet" type="text/css" href="/public/css/bookshelf.css">
 <script src="/public/js/bookshelf.js"></script>
 
-<h1> Bookshelf </h1>
+<!--<nav id="bookshelf-nav" class="navbar navbar-toggleable-md navbar-light bg-faded">-->
+<!--TODO: Do I need the bg-faded-->
+<nav id="bookshelf-nav" class="navbar sticky-top navbar-toggleable-md navbar-light bg-faded">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#bookshelf-nav-toggle-target" aria-controls="bookshelf-nav-toggle-target" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">Bookshelf</a>
+    <div class="collapse navbar-collapse" id="bookshelf-nav-toggle-target">
+        <ul class="navbar-nav mr-auto mt-2 mt-md-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+        </ul>
+        <!--<form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>-->
+
+    </div>
+
+    <button id="new-book" type="button" class="btn btn-secondary hand-cursor">
+        <i class="fa fa-plus-square-o fa-lg" aria-hidden="true"></i>
+        New Book
+    </button>
+</nav>
+
 <!--TODO: Use ajax to upload data-->
 <div id="content" class="container-fluid">
   <!--This is where the bookshelf.js will load the bookshelf into-->
   <div id="bookshelf" class="row"></div>
-  <div class="card book-card">
-    <div id="edit" class="card-block">
-      <button type="button" class="btn btn-lg btn-danger test-popover" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
-      <form method="POST" action="{{url "BookShelf.HandleUpload"}}" id="bookupload" enctype="multipart/form-data">
-        {{with $field := field "book.Title" .}}
-        <p>
-            <label>Title:</label>
-            <input type="text" name="{{$field.Name}}" />
-            <span class="error">{{$field.Error}}</span>
-        </p>
-        {{end}}
-        {{with $field := field "book.Author" .}}
-        <p>
-            <label>Author:</label>
-            <input type="text" name="{{$field.Name}}" />
-            <span class="error">{{$field.Error}}</span>
-        </p>
-        {{end}}
-        {{with $field := field "book.CoverImg" .}}
-        <p>
-            <label>Cover Image:</label>
-            <input type="file" name="{{$field.Name}}" />
-        </p>
-        {{end}}
-        <p>
-            <input type="submit" value="Upload" class="btn btn-large btn-success" />
-        </p>
-     </form>
-    </div>
-  </div>
 </div>
 
 {{template "footer.html" .}}

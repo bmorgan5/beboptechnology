@@ -1,0 +1,26 @@
+<div class="card">
+<form method="POST" action="{{url " BookShelf.HandleUpload "}}" id="bookupload" enctype="multipart/form-data">
+    {{with $field := field "book.Title" .}}
+    <p>
+        <label>Title:</label> - <input type="text" name="{{$field.Name}}" />
+        <span class="error">{{$field.Error}}</span>
+    </p>
+    {{end}}
+    {{with $field := field "book.Author" .}}
+    <p>
+        <label>Author:</label>
+        <input type="text" name="{{$field.Name}}" />
+        <span class="error">{{$field.Error}}</span>
+    </p>
+    {{end}}
+    {{with $field := field "book.CoverImg" .}}
+    <p>
+        <label>Cover Image:</label>
+        <input type="file" name="{{$field.Name}}" />
+    </p>
+    {{end}}
+    <p>
+        <input type="submit" value="Upload" class="btn btn-large btn-success" />
+    </p>
+</form>
+</div>
