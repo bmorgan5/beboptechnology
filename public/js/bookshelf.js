@@ -116,8 +116,11 @@ function show_edit_book_page_cover(book) {
 
     var background_cover = $(`<div id="background-cover"></div>`);
     $('body').prepend(background_cover);
+    CKEDITOR.replace('book-blog-editor', {
+        customConfig: "bookshelf-config.js"
+    });
 
-    CKEDITOR.replace('book-blog-editor');
+
 }
 
 function show_page_cover(book) {

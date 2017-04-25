@@ -20,6 +20,7 @@ p.bold {
 
 #bookshelf-nav {
     background-color: #0ddddd;
+    box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .book-card{
